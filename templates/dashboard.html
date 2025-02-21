@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>Total hours: {{ user.total_hours }} hours</p>
+
+    <h2>Log your practice hours</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="hours">Enter hours of practice today:</label>
+            {{ form.hours(size=32) }}
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    {% if time_to_goal_years is not none %}
+        <p>Time remaining to reach 10,000 hours: {{ time_to_goal_years | round(2) }} years</p>
+    {% else %}
+        <p>Please enter your practice hours.</p>
+    {% endif %}
+</body>
+</html>
